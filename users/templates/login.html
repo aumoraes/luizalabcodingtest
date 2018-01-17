@@ -1,0 +1,31 @@
+{% extends "base_user.html" %}
+
+{% block body %}
+
+    <form class="form-signin" role="form" action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+
+        <h3 class="form-signin-heading">Login System Admin</h3>
+
+        <input type="text" id="id_username" name="username" class="form-control" placeholder="Name *" required autofocus>
+
+        <input type="password" id="id_password" name="password" class="form-control" placeholder="Password *" required>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Login</button>
+
+        <input type="hidden" name="next" value="{{ next }}" />
+
+        <hr />
+        {% if form.errors %}
+          <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            Loggin Error: Please, verify login/password.
+          </div>
+        {% endif %}
+
+        <a href="/">home</a>
+        |
+        <a href="{% url 'registeradmin' %}">Add New System User </a>
+    </form>
+
+{% endblock %}

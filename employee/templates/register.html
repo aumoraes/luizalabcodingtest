@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block body %}
+<form class="form-signin" role="form" action="{% url 'register' %}" method="POST">
+  {% csrf_token%}
+  <h3 class="form-signin-heading"> Register Employee </h3>
+
+  <input type="text" id="id_name" value="{{ form.name.value }}" name="name" class="form-control" placeholder="Name *" required autofocus>
+  <input type="email" id="id_email" value="{{ form.email.value }}" name="email" class="form-control" placeholder="Email *" required>
+  <input type="text" id="id_department" value="{{ form.department.value }}" name="department" class="form-control" placeholder="Department *" required>
+
+  <hr />
+
+  <button class="btn primary btn-lg btn-primary btn-block" type="submit" value="login">Register</button>
+
+  {% if form.errors %}
+    <hr />
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button>
+      {{ form.non_field_errors }}
+      {% for field in form %}
+        <div class="panel-body">
+          {% if field.errors %}
+            <p><span>{{ field.label_tag }}</span>{{ field.errors }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <a href="/">Home</a>
+</form>
+{% endblock %}

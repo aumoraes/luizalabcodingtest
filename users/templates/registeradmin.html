@@ -1,0 +1,32 @@
+{% extends "base_user.html" %}
+{% block body %}
+<form class="form-signin" role="form" action="{% url 'registeradmin' %}" method="POST">
+  {% csrf_token%}
+  <h3 class="form-signin-heading"> Create new system user </h3>
+  <input type="text" id="id_email" value="{{ form.email.value }}" name="email" class="form-control" placeholder="Email *" required autofocus>
+  <input type="text" id="id_nome" value="{{ form.nome.value }}" name="nome" class="form-control" placeholder="Name *" required>
+  <input type="password" id="id_senha" name="senha" class="form-control" placeholder="Password *" required>
+
+  <hr />
+
+
+  <button class="btn primary btn-lg btn-primary btn-block" type="submit" value="login">Register System Admin</button>
+
+  <hr />
+
+  {% if form.errors %}
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button>
+      {{ form.non_field_errors }}
+      {% for field in form %}
+        <div class="panel-body">
+          {% if field.errors %}
+            <p><span>{{ field.label_tag }}</span>{{ field.errors }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <a href="\"> home </a> | Have a user? <a href="{% url 'login' %}">login</a>
+</form>
+{% endblock %}

@@ -1,0 +1,61 @@
+curl -H "Content-Type: application/json" -X POST -d '{"name":"Maria da Silva Cesario","email":"maria@gmail.com", "department": "RH"}' http://localhost:8000/api/v1/employee
+curl -H "Content-Type: application/json" -X POST -d '{"name":"Aurelio de Moraes","email":"aurelidemoraes13@gmail.com", "department": "TI"}' http://localhost:8000/api/v1/employee
+curl -H "Content-Type: application/json" -X POST -d '{"name":"john McLarem","email":"john@gmail.com", "department": "ADM"}' http://localhost:8000/api/v1/employee
+
+
+curl -H "Content-Type: application/json" -X POST -d '{"name":"Albert Billy","email":"albert@gmail.com", "department": "ELETRICA"}' http://localhost:8000/api/v1/employee
+
+curl -H "Content-Type: application/json" -X POST -d '{"name":"Morgan Smith","email":"morgan@gmail.com", "department": "FINACEIRO"}' http://localhost:8000/api/v1/employee
+
+
+
+
+curl -H "Content-Type: application/json" -X PUT -d '{"id": "16", "name":"Maria da Silva","email":"maria@gmail.com", "department": "RH"}' http://localhost:8000/api/v1/employee
+
+curl -X PUT -d arg=val -d arg2=val2 localhost:8080
+
+
+curl -X "DELETE" http://localhost:8000/api/v1/employee/15
+
+
+
+
+curl -H 'Accept: application/json; indent=2' http://localhost:8000/api/v1/employee
+
+
+_______________________________
+Ajustar Javascript para usar mesmo metodo de delete e update( FAZER REFACTORY ) OK
+
+
+no arquivo api.py 
+passar os dados como object OK
+
+
+Fazer validação na hora de fazer update OK
+
+Paginação OK
+
+
+Politica de Login >> Colocar politica no item de delete e update
+Politica de Login >> Tirar politica da tela de index
+ps: qualuqer um pode ser
+só logado pode alterar
+
+
+refatory pagina de login e registrar usuario no sistema
+
+---------------------------------------------------
+
+
+FAZER TESTES
+
+
+
+SUBIR NO COVERALL
+
+
+
+
+
+
+

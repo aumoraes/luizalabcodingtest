@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block body %}
+
+{% include "delete_modal.html"%}
+{% include "update_modal.html"  %}
+
+<div class="panel panel-primary">
+
+    <div class="panel-heading clearfix">
+      <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><strong>Employee's List</strong></h4>
+      <a href="{% url 'register' %}" class="btn btn-default btn-sm pull-right" role="button">Register Employee</a>
+    </div>
+    <div class="container">
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        {% if employees_list.results %}
+            {% for employee in employees_list.results %}
+              <tr id="employee_{{ employee.id }}">
+                <td >
+                    <p class="id">
+                      {{ employee.id }}
+                    </p>
+                </td>
+
+                <td>
+                  <p class="name">
+                    {{ employee.name }}
+                  </p>
+                </td>
+                <td>
+                    <p class="email">
+                      {{ employee.email}}
+                    </p>
+                </td>
+                <td>
+                  <p class="department">
+                    {{ employee.department}}
+                  </p>
+                </td>
+                {% if has_logged_user %}
+                    <td>
+                      <a href="#" class="update_employee btn btn-warning btn-sm pull-right" role="button">update</a>
+                    </td>
+                    <td><a href="#"  class=" delete_employee btn btn-danger btn-sm pull-right" role="button">delete</a></td>
+                {% else %}
+                    <td><a href="{% url 'login' %}"   role="button">Require loggedin user</a></td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+        {% else %}
+            <div class="panel-body">
+              <p>Any employee register yet</p>
+            </div>
+        {% endif %}
+
+        </tbody>
+      </table>
+
+      <nav aria-label="Page navigation">
+          <ul class="pagination" id="pagination"></ul>
+      </nav>
+
+    </div>
+
+</div>
+<script type="text/javascript">
+  $(function () {
+
+    actual_page = 1;
+    param = getUrlParameter('page')
+    if ( param ){
+      actual_page = parseInt( param );
+    }
+    var numberOfPages = Math.ceil( {{employees_list.count}} / {{ page_size}} );
+
+    var $pagination = $('#pagination');
+    var defaultOpts = {
+        initiateStartPageClick: false,
+        totalPages: numberOfPages,
+        visiblePages: 5,
+        startPage: actual_page,
+        onPageClick: function (event, page) {
+          paginationController(page);
+        }
+    };
+    $pagination.twbsPagination(defaultOpts);
+  });
+</script>
+
+{% endblock %}

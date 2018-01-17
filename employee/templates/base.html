@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<link href="{% static "styles/bootstrap.css" %}" rel="stylesheet">
+	<link href="{% static "styles/main.css" %}" rel="stylesheet">
+	<link href="{% static "styles/signin.css" %}" rel="stylesheet">
+
+	<script type="text/javascript" src="{% static "scripts/vendor/jquery-1.9.1.js" %}"></script>
+	<script type="text/javascript" src="{% static "scripts/vendor/jquery-validation/dist/jquery.validate.js" %}"></script>
+	<script type="text/javascript" src="{% static "scripts/vendor/bootstrap-min.js" %}"></script>
+	<script type="text/javascript" src="{% static "scripts/vendor/jquery.pagination.js" %}"></script>
+	<script type="text/javascript" src="{% static "scripts/script.js" %}"></script>
+	<script type="text/javascript" src="{% static "scripts/validate-rules.js" %}"></script>
+
+
+	<title>Luizalab Employee Manager</title>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<ul class="nav nav-pills pull-right">
+				{% if has_logged_user %}
+					<li class=""><a href="/admin">{{logged_profile}}</a></li>
+					<li class=""><a href="{% url 'logout' %}">Logout</a></li>
+				{% endif %}
+			</ul>
+			<h3 class="text-muted">Luizalab Employee Manager</h3>
+		</div>
+		<div class="row content">
+			{% block body %}
+			{% endblock %}
+		</div>
+	</div>
+</body>
+</html>
